@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcryptjs");
 const mongoose = require("mongoose");
 const user = require("./schemas/user");
+const multer = require('multer');
 
 const app = express();
 
@@ -17,6 +18,9 @@ const cors = require('cors');
 app.use(cors());
 
 const login = require('./auth/login');
+const addBook = require('./book/addBook');
+const getBooks = require("./book/getBooks");
+const deleteBook = require("./book/deleteBooks");
 
 
 /* app.get('/adduser', (req, res) =>{
@@ -35,6 +39,35 @@ const login = require('./auth/login');
     })
 }) */
 
+// Configure multer
+const storage = multer.diskStorage({
+    destination: function(req, file, callback) {
+        callback(null, './thumbnails')
+    },
+
+    filename: function(req, file, callback) {
+        callback(null, file.originalname)
+    }
+})
+
+const upload = multer({storage: storage})
+
+app.use('/images', express.static('thumbnails'))
+
+//routes
+
 app.post('/login', (req, res) => {
     login(req, res);
+})
+
+app.post('/addbook', upload.single('thumbnail'), (req, res) => {
+    addBook(req, res);
+})
+
+app.get('/getbooks', (req, res) => {
+    getBooks(req, res);
+})
+
+app.delete("/deletebook/:id", (req,res) => {
+    deleteBook(req, res);
 })
