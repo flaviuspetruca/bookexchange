@@ -12,7 +12,8 @@ const addBook = (req, res) => {
                     req.body.thumbnail !== ''
                     ) {
                     const authors = req.body.authors.split(',');
-                    console.log(authors);
+                    if(req.file.size > 1897120000)
+                       res.status(400).send("limit excedeed"); 
                     let newBook = new Book({
                         "authors": authors,
                         "title": req.body.title,

@@ -21,6 +21,7 @@ const login = require('./auth/login');
 const addBook = require('./book/addBook');
 const getBooks = require("./book/getBooks");
 const deleteBook = require("./book/deleteBooks");
+const islogged = require("./auth/islogged");
 
 
 /* app.get('/adduser', (req, res) =>{
@@ -58,6 +59,10 @@ app.use('/images', express.static('thumbnails'))
 
 app.post('/login', (req, res) => {
     login(req, res);
+})
+
+app.get('/islogged', (req, res) => {
+    islogged(req, res);
 })
 
 app.post('/addbook', upload.single('thumbnail'), (req, res) => {
