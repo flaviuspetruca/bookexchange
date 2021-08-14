@@ -31,6 +31,8 @@ const Admin = () => {
     }
 
     const addbook = async() => {
+        setSelectedFile();
+        setIsFilePicked(false);
         const formdata = new FormData();
         formdata.append("authors", authors);
         formdata.append("title", title)
@@ -104,8 +106,10 @@ const Admin = () => {
         }
 
         const changeHandler = (event) => {
-            if(event && event.target.files[0] !== undefined)
+            if(event && event.target.files[0] !== undefined){
                 setSelectedFile(event.target.files[0]);
+                console.log("GETRE");
+            }
             else{
                 setIsFilePicked(false);
                 return;
