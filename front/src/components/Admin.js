@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Book from './Book';
 import {URI} from "../App.js";
 import Modal from 'react-modal';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 const Admin = () => {
 
@@ -124,7 +126,8 @@ const Admin = () => {
             const res = await req.json();
             setBooks(res.books);
         }
-        getBooks()
+        Aos.init({duration: 0});
+        getBooks();
     }, [update]);
 
     return ( 

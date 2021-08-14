@@ -5,8 +5,8 @@ import leaders from './leaders.png';
 import CountUp from 'react-countup';
 import Book from "./Book";
 import Aos from 'aos';
-import VisibilitySensor from 'react-visibility-sensor';
 import 'aos/dist/aos.css';
+import VisibilitySensor from 'react-visibility-sensor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
