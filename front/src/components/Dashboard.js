@@ -10,7 +10,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-const Dashboard = () => {
+const Dashboard = ({isAdmin}) => {
 
     const [books, setBooks] = useState([]);
     const [hasBeenSeen, setHasBeenSeen] = useState(false);
@@ -79,7 +79,7 @@ const Dashboard = () => {
                     }
                     {
                         books !== [] ? 
-                            books.map((b, i) => {if(i >= start && i < start + index) return (<Book book={b}></Book>); else return null;})
+                            books.map((b, i) => {if(i >= start && i < start + index) return (<Book isAdmin={isAdmin} book={b}></Book>); else return null;})
                         :
                         <></>
                     }

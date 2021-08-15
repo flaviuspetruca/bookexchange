@@ -3,14 +3,16 @@ import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
 
-const Book = ({book, setUpdate, update, setAddedBook}) => {
+const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
     const thumbnail = book.thumbnail;
     const authors = book.authors;
     const title = book.title;
     
     const token = localStorage.getItem('token');
-
+    
     const deleteBook = async () =>{
+        if(!isAdmin)
+            return;
         console.log(book._id);
         const req = await fetch(URI + `deleteBook/${book._id}`, {
             method: "DELETE",
@@ -25,12 +27,15 @@ const Book = ({book, setUpdate, update, setAddedBook}) => {
 
     const [modalIsOpen,setIsOpen] = useState(false);
     function openModal() {
+        if(!isAdmin)
+            return;
         setIsOpen(true);
     }
     
     function closeModal(){
+        if(!isAdmin)
+            return;
         setIsOpen(false);
-        setAddedBook('');
     }
 
     const customStyles = {
@@ -86,9 +91,13 @@ const Book = ({book, setUpdate, update, setAddedBook}) => {
                                                 )}
                     </Card.Subtitle>
                 }
+                {isAdmin ?
                 <button className="btn btn-danger" onClick={() => openModal()}>
                                                 Delete
                 </button>
+                :
+                null
+                }
                 </Card.Body>
             </Card>
         </div>
