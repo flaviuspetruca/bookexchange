@@ -10,7 +10,6 @@ const Admin = () => {
     const [books, setBooks] = useState([]);
     const [update, setUpdate] = useState();
 
-    const [modalIsOpen1,setIsOpen1] = useState(false);
     const [modalIsOpen2,setIsOpen2] = useState(false);
     const [addedBook, setAddedBook] = useState('');
     const [title, setTitle] = useState('');
@@ -19,18 +18,6 @@ const Admin = () => {
     const [isFilePicked, setIsFilePicked] = useState(false);
 
     const token = localStorage.getItem('token');
-
-    const deleteBook = async (book) =>{
-        const req = await fetch(URI + `deleteBook/${book._id}`, {
-            method: "DELETE",
-            headers: {
-                "x-auth-token": token,
-                'Content-Type': 'application/json'
-            }
-        });
-        if(req.status === 200)
-            setUpdate(!update);
-    }
 
     const addbook = async() => {
         setSelectedFile();
@@ -84,15 +71,6 @@ const Admin = () => {
         },
     
         };
-
-        function openModal1(book) {
-            setIsOpen1(true);
-        }
-        
-        function closeModal1(){
-            setIsOpen1(false);
-            setAddedBook('');
-        }
         function openModal2() {
             setIsOpen2(true);
         }
@@ -110,7 +88,6 @@ const Admin = () => {
         const changeHandler = (event) => {
             if(event && event.target.files[0] !== undefined){
                 setSelectedFile(event.target.files[0]);
-                console.log("GETRE");
             }
             else{
                 setIsFilePicked(false);
@@ -204,26 +181,11 @@ const Admin = () => {
                 <button className="btn btn-light" onClick={openModal2}>Add book</button>
                 <h1 className="text-center">Available books</h1>
                 {
-                    books.map(b => <div key={b._id}>
-                                    <Book book={b}/>
-                                        <div className="row justify-content-center">
-                                            <button className="btn btn-danger" onClick={() => openModal1(b)}>
-                                                Delete
-                                            </button>
-                                            <Modal 
-                                                isOpen={modalIsOpen1}
-                                                onRequestClose={closeModal1}
-                                                style={customStyles}
-                                                contentLabel="Example Modal"
-                                                ariaHideApp={false}
-                                            >
-                                                <h5 className="text-center text-danger">Are you sure you want to delete this book?</h5>
-                                                <button className="btn btn-danger deleteBtn mt-0 mr-2" onClick={()=> {deleteBook(b); closeModal1()}}>Delete</button>
-                                                <button onClick={closeModal1} className="btn btn-warning cancelLogout">Cancel</button>
-                                            </Modal>
-                                        </div>
-                                    </div>
-                            )
+                    books.map(b => <Book    book={b} 
+                                            setAddedBook={setAddedBook} 
+                                            update={update} 
+                                            setUpdate={setUpdate} 
+                                            key={b._id}/>)
                 }
             </div>
         </div>

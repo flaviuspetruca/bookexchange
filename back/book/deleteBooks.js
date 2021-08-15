@@ -5,13 +5,27 @@ const deleteBook = (req, res) => {
     const token = JSON.parse(req.header("x-auth-token"));
     try{
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
-        console.log(decodedToken.role);
         if(decodedToken.role === "admin"){
-            Book.findOneAndRemove({"_id": req.params.id}, (err) =>{
+            Book.findOneAndDelete({"_id": req.params.id}, (err, book) =>{
                 if(err)
                     res.status(400).send();
-                else
+                else{
+                    const fs = require('fs')
+
+                    
+                    const path = `../back/${book.thumbnailPath}`;
+                    
+                    console.log(path);
+                    fs.unlink(path, (err) => {
+                    if (err) {
+                        console.error(err)
+                        return
+                    }
+
+                    //file removed
+                    })
                     res.status(200).json({deleted: true});
+                }
             })
         }
     }catch(err){
