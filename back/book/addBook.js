@@ -18,7 +18,7 @@ const addBook = (req, res) => {
                         "authors": authors,
                         "title": req.body.title,
                         "thumbnailPath": req.file.path.toString(),
-                        "thumbnail": `http://localhost:3000/images/`+ req.file.originalname,
+                        "thumbnail": `http://www.bookarest.live/images/`+ req.file.originalname,
                     })
 
                     newBook.save(newBook, (err, data) => {
