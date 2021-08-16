@@ -10,7 +10,7 @@ import VisibilitySensor from 'react-visibility-sensor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
-const Dashboard = ({isAdmin}) => {
+const Dashboard = () => {
 
     const [books, setBooks] = useState([]);
     const [hasBeenSeen, setHasBeenSeen] = useState(false);
@@ -45,7 +45,7 @@ const Dashboard = ({isAdmin}) => {
     return ( 
         <div style={{width: "100%"}}>
                 <h1 className="title">BOOKarest</h1>
-            <div className="row mt-5 justify-content-center">
+            <div className="row mt-5 justify-content-center" style={{marginTop: "30px"}} >
                 <div data-aos="fade-up" data-aos-once="true"  className="col-lg-6">
                     <img src={kidsVector} alt="kids" id="kids"></img>
                 </div>
@@ -57,7 +57,7 @@ const Dashboard = ({isAdmin}) => {
             <div data-aos="fade-up" data-aos-once="true" className="row text-center">
             <VisibilitySensor partialVisibility offset={{bottom: 100}} onChange={changeHandler} delayedCall>
                     <div className="countup-inner">
-                        <CountUp end={hasBeenSeen? 1000 : 0} duration={1.5} className="countup"/>
+                        <CountUp end={hasBeenSeen? 10 : 0} duration={1.5} className="countup"/>
                         <h1 className="mt-0">Cărți donate</h1>
                     </div>
                 </VisibilitySensor>
@@ -71,7 +71,7 @@ const Dashboard = ({isAdmin}) => {
                     <h1 className="text-center text-white mt-5">Cărți valabile pentru exchange</h1>
                     {
                         start > 0 ?
-                        <button className="chevron" onClick={() => {setStart(start-index); console.log(start)}}>
+                        <button className="chevron-up" onClick={() => {setStart(start-index); console.log(start)}}>
                             <FontAwesomeIcon icon={faChevronUp}  size="2x"/>
                         </button>
                         :null
@@ -79,13 +79,13 @@ const Dashboard = ({isAdmin}) => {
                     }
                     {
                         books !== [] ? 
-                            books.map((b, i) => {if(i >= start && i < start + index) return (<Book isAdmin={isAdmin} book={b}></Book>); else return null;})
+                            books.map((b, i) => {if(i >= start && i < start + index) return (<Book book={b}></Book>); else return null;})
                         :
                         <></>
                     }
                     {
                         start + index < books.length ?
-                        <button className="chevron" onClick={() => {setStart(start+index); console.log(start+index)}}>
+                        <button className="chevron-down" onClick={() => {setStart(start+index); console.log(start+index)}}>
                             <FontAwesomeIcon icon={faChevronDown}  size="2x"/>
                         </button>
                         :

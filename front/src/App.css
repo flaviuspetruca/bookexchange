@@ -77,15 +77,25 @@
 	box-shadow: 1px 0 .4em rgba(0, 0, 0, 0.295);
 	}
 
-	.chevron{
+	.chevron-up{
 		background-color: transparent;
 		border: none;
 		margin-top: 20px !important;
 	}
 
-	.chevron:hover{
+	.chevron-down{
+		background-color: transparent;
+                border: none;
+                margin-top: 40px !important;
+        }
+
+	.chevron-up:hover{
 		color:white !important;
 	}
+	
+	.chevron-down:hover{
+                color:white !important;
+        }
 
 	/* React Modal */
 	.ReactModal__Overlay {
@@ -180,7 +190,7 @@
 	}
 
 	#kids{
-		margin-top: -3rem;
+		margin-top: -2rem;
 		max-width: 800px;
 	}
 	
@@ -321,4 +331,8 @@
 		.countup-inner{
 			height:	200px;
 		}
+		#kids{
+			margin-top: 0 !important;
+		}
+		
 	  }

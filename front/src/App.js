@@ -9,7 +9,7 @@ import Login from './components/Login';
 import NotFound from './components/NotFound';
 import Admin from './components/Admin';
 
-const URI = "http://localhost:8000/api/";
+const URI = "http://www.bookarest.live/api/";
 
 export {URI};
 
@@ -65,7 +65,7 @@ function App() {
     }
       <Router>
         <Switch>
-          <Route path="/" exact component={() => <DashBoard isAdmin={isAdmin}/>}/>
+          <Route path="/" exact component={DashBoard}/>
           <Route path="/login" component={() => <Login setToken={handleLogin}/>}/>
           {
             isAdmin ? <Route path="/admin" component={Admin}/>

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
@@ -9,7 +9,7 @@ const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
     const title = book.title;
     
     const token = localStorage.getItem('token');
-    
+
     const deleteBook = async () =>{
         if(!isAdmin)
             return;
@@ -77,7 +77,7 @@ const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
             <button onClick={closeModal} className="btn btn-warning cancelLogout">Cancel</button>
         </Modal>
         <div className="col-lg-2 book-card" id={book._id}>
-            <Card data-aos="fade-down" data-aos-once="true" >
+            <Card data-aos="fade-down" data-aos-once="true" style={{height: "450px"}}>
                 <Card.Img variant="top" src={thumbnail} style={{height: '300px'}} />
                 <Card.Body>
                 <Card.Title className="text-center">{title}</Card.Title>
