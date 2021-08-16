@@ -55,7 +55,7 @@ const Dashboard = ({isAdmin}) => {
                 </div>
             </div>
             <div data-aos="fade-up" data-aos-once="true" className="row text-center">
-            <VisibilitySensor partialVisibility offset={{bottom: 200}} onChange={changeHandler} delayedCall>
+            <VisibilitySensor partialVisibility offset={{bottom: 100}} onChange={changeHandler} delayedCall>
                     <div className="countup-inner">
                         <CountUp end={hasBeenSeen? 1000 : 0} duration={1.5} className="countup"/>
                         <h1 className="mt-0">Cărți donate</h1>

@@ -210,7 +210,7 @@
 
 	.book-card{
 		width: 18rem !important;
-		height: 400px;
+		height: 400px !important;
 		margin: 30px;
 		margin-top: 50px !important;
 		transition: all 0.2s ease-in-out;

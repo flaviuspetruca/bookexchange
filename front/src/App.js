@@ -9,7 +9,7 @@ import Login from './components/Login';
 import NotFound from './components/NotFound';
 import Admin from './components/Admin';
 
-const URI = "http://www.bookarest.live/api/";
+const URI = "http://localhost:8000/api/";
 
 export {URI};
 
