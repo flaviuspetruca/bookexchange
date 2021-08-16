@@ -5,12 +5,12 @@ const addBook = (req, res) => {
     const token = req.header("x-auth-token");
     if(token){
         try {
-            const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET)
+            const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
             if (decodedToken.role === 'admin') {
                 if (
                     req.body.authors.length > 0  && req.body.title !== ''  &&
                     req.body.thumbnail !== ''
-                    ) {
+                    ){
                     const authors = req.body.authors.split(',');
                     if(req.file.size > 1897120000)
                        res.status(400).send("limit excedeed"); 
@@ -19,8 +19,7 @@ const addBook = (req, res) => {
                         "title": req.body.title,
                         "thumbnailPath": req.file.path.toString(),
                         "thumbnail": `http://www.bookarest.live/images/`+ req.file.originalname,
-                    })
-
+                   });
                     newBook.save(newBook, (err, data) => {
                         if (data)
                             res.status(201).send(data)
