@@ -1,15 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
 
-const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
+const Book = ({book, setUpdate, update, setAddedBook}) => {
     const thumbnail = book.thumbnail;
     const authors = book.authors;
     const title = book.title;
     
     const token = localStorage.getItem('token');
-    
+
+    const [isAdmin, setIsAdmin] = useState(false);
+
     const deleteBook = async () =>{
         if(!isAdmin)
             return;
@@ -63,6 +65,21 @@ const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
     
         };
 
+    useEffect(() => {
+	const isAdminFunc = async () =>{
+        const req = await fetch(URI + 'isAdmin', {
+            method: "GET",
+            headers: {
+                        "x-auth-token": token
+            }
+        });
+        if(req.status === 200)
+            setIsAdmin(true);
+        else
+       	    setIsAdmin(false);
+       	}
+	isAdminFunc();
+	}, []);
     return (
         <>                                 
         <Modal 
@@ -77,7 +94,7 @@ const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
             <button onClick={closeModal} className="btn btn-warning cancelLogout">Cancel</button>
         </Modal>
         <div className="col-lg-2 book-card" id={book._id}>
-            <Card data-aos="fade-down" data-aos-once="true">
+            <Card data-aos="fade-down" data-aos-once="true" style={{height: "450px"}}>
                 <Card.Img variant="top" src={thumbnail} style={{height: '300px'}} />
                 <Card.Body>
                 <Card.Title className="text-center">{title}</Card.Title>
