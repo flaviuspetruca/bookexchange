@@ -4,16 +4,18 @@ const mongoose = require("mongoose");
 const user = require("./schemas/user");
 const multer = require('multer');
 
+
 const app = express();
 
 //setting up express
 app.use(express.json());
-app.listen(3000);
+app.listen(8000);
 
 mongoose.connect('mongodb://localhost/BOOK-EX');
 
 //middleware
-require('dotenv').config();
+const path = require('path'); 
+require('dotenv').config({ path: path.join(__dirname, '.env') });
 const cors = require('cors');
 app.use(cors());
 
@@ -43,7 +45,7 @@ const islogged = require("./auth/islogged");
 // Configure multer
 const storage = multer.diskStorage({
     destination: function(req, file, callback) {
-        callback(null, './thumbnails')
+        callback(null, '/root/apps/bookexchange/back/thumbnails')
     },
 
     filename: function(req, file, callback) {
@@ -53,26 +55,26 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage})
 
-app.use('/images', express.static('thumbnails'))
+app.use('/images', express.static('/root/apps/bookexchange/back/thumbnails'))
 
 //routes
 
-app.post('/login', (req, res) => {
-    login(req, res);
+app.post('/api/login', (req, res) => {
+    login(req,res);
 })
 
-app.get('/islogged', (req, res) => {
+app.get('/api/islogged', (req, res) => {
     islogged(req, res);
 })
 
-app.post('/addbook', upload.single('thumbnail'), (req, res) => {
+app.post('/api/addbook', upload.single('thumbnail'), (req, res) => {    	
     addBook(req, res);
 })
 
-app.get('/getbooks', (req, res) => {
+app.get('/api/getbooks', (req, res) => {
     getBooks(req, res);
 })
 
-app.delete("/deletebook/:id", (req,res) => {
+app.delete("/api/deletebook/:id", (req,res) => {
     deleteBook(req, res);
 })
