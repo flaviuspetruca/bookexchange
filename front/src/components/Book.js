@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
@@ -13,7 +13,6 @@ const Book = ({type, isAdmin, book, setUpdate, update}) => {
     const deleteBook = async () =>{
         if(!isAdmin)
             return;
-        console.log(book._id);
         const req = await fetch(URI + `deleteBook/${book._id}/${type}`, {
             method: "DELETE",
             headers: {
