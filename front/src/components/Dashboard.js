@@ -71,7 +71,7 @@ const Dashboard = () => {
                     <h1 className="text-center text-white mt-5">Cărți valabile pentru exchange</h1>
                     {
                         start > 0 ?
-                        <button className="chevron-up" onClick={() => {setStart(start-index); console.log(start)}}>
+                        <button className="chevron-up" onClick={() => {setStart(start-index)}}>
                             <FontAwesomeIcon icon={faChevronUp}  size="2x"/>
                         </button>
                         :null
@@ -85,7 +85,7 @@ const Dashboard = () => {
                     }
                     {
                         start + index < books.length ?
-                        <button className="chevron-down" onClick={() => {setStart(start+index); console.log(start+index)}}>
+                        <button className="chevron-down" onClick={() => {setStart(start+index)}}>
                             <FontAwesomeIcon icon={faChevronDown}  size="2x"/>
                         </button>
                         :

@@ -181,7 +181,9 @@ const Admin = () => {
                 <button className="btn btn-light" onClick={openModal2}>Add book</button>
                 <h1 className="text-center">Available books</h1>
                 {
-                    books.map(b => <Book    book={b} 
+                    books.map(b => <Book    
+					    isAdmin={true}
+					    book={b} 
                                             setAddedBook={setAddedBook} 
                                             update={update} 
                                             setUpdate={setUpdate} 

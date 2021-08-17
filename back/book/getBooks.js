@@ -6,7 +6,7 @@ const getbooks = (req, res) => {
     try{
         Book.find({}, (err, books) => {
             if(books){
-                res.status(200).json({books});
+                res.status(200).json({books: books.reverse()});
             }
             else{
                 res.status(400).send(err);
