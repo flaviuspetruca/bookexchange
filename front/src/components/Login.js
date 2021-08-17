@@ -64,7 +64,7 @@ const Login = (handleLogin) => {
                 <form onSubmit={handleSubmit}>
                     <h3>Sign In</h3>
 
-                    <div className="form-group">
+                    <div className="form-group-login">
                         <label>Username</label>
                         <input 
                             type="text" 

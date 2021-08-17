@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
 
-const Book = ({isAdmin, book, setUpdate, update, setAddedBook}) => {
+const Book = ({isAdmin, book, setUpdate, update}) => {
     const thumbnail = book.thumbnail;
     const authors = book.authors;
     const title = book.title;

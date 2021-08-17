@@ -9,6 +9,6 @@ const bookDonatedSchema = new Schema({
     thumbnailPath: String,
 })
 
-const Book = mongoose.model('bookDonated', bookDonatedSchema);
+const DonatedBook = mongoose.model('bookDonated', bookDonatedSchema);
 
-module.exports = Book;
+module.exports = DonatedBook;

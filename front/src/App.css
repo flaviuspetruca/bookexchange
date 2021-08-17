@@ -95,8 +95,11 @@
 	
 	.chevron-down:hover{
                 color:white !important;
-        }
+    }
 
+	#inline-radio-1{
+		color: white !important;
+	}
 	/* React Modal */
 	.ReactModal__Overlay {
 	opacity: 0;
@@ -182,7 +185,7 @@
 	font-weight: 400;
 	}
 
-	label{
+	.form-group-login label{
 	font-size: 15px;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 0.623) !important;

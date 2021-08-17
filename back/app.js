@@ -29,7 +29,7 @@ const getDonatedBooks = require("./book/getDonatedBooks");
 
 /* app.get('/adduser', (req, res) =>{
     const salt = bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync("book3xChangeSecret123", salt);
+    const password = bcrypt.hashSync("", salt);
     const User = new user({username: "admin", password});
     User.save().then(res.status(200).send()).catch(e => res.status(400).send(e));
 })
@@ -37,7 +37,7 @@ const getDonatedBooks = require("./book/getDonatedBooks");
 
 /* app.get('/verifyuser', (req, res) => {
     user.findOne({username: "admin"}, (err, user) => {
-        bcrypt.compare("book3xChangeSecret123", user.password, (err, result) => {
+        bcrypt.compare("", user.password, (err, result) => {
             res.json(result);
         })
     })

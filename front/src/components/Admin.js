@@ -4,11 +4,15 @@ import {URI} from "../App.js";
 import Modal from 'react-modal';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
+import { Form } from 'react-bootstrap';
 
 const Admin = () => {
 
     const [books, setBooks] = useState([]);
+    const [donatedBooks, setDonatedBooks] = useState([]);
+    const [page, setPage] = useState('books');
     const [update, setUpdate] = useState();
+    const [bookType, setBookType] = useState(false);
 
     const [modalIsOpen2,setIsOpen2] = useState(false);
     const [addedBook, setAddedBook] = useState('');
@@ -20,11 +24,17 @@ const Admin = () => {
     const token = localStorage.getItem('token');
 
     const addbook = async() => {
+        if(bookType === false){
+            setAddedBook(false);
+            return;
+        }
         setSelectedFile();
         setIsFilePicked(false);
+        setBookType();
         const formdata = new FormData();
         formdata.append("authors", authors);
-        formdata.append("title", title)
+        formdata.append("title", title);
+        formdata.append("type", bookType);
         if(!selectedFile)
             return;
         if(selectedFile)
@@ -78,6 +88,7 @@ const Admin = () => {
         function closeModal2(){
             setIsOpen2(false);
             setAddedBook('');
+            setIsFilePicked(false)
             setSelectedFile();
         }
 
@@ -96,6 +107,22 @@ const Admin = () => {
             setIsFilePicked(true);
             setAddedBook('');
         };
+
+    const handlePageChange = () => {
+        setPage('donatedBooks');
+        const getDonatedBooks = async() =>{
+            const req = await fetch(URI + "getdonatedbooks/false",{
+                method: "GET",
+                headers: {
+                    'x-auth-token': JSON.parse(token)
+                }
+            });
+            const res = await req.json();
+            setDonatedBooks(res.books);
+        }
+        if(donatedBooks === [])
+            getDonatedBooks();
+    }
 
     useEffect(() => {
         const getBooks = async() =>{
@@ -144,7 +171,26 @@ const Admin = () => {
                               }
                 />
               </div>
-              
+            <Form>
+            <div key={'inline-radio'} className="mb-3 mt-5">
+                <Form.Check
+                    inline
+                    label="Exchanged Book"
+                    name="group1"
+                    type="radio"
+                    id="inline-radio-1"
+                    onChange={() => setBookType('exchange')}
+                />
+                <Form.Check
+                    inline
+                    label="Donated Book"
+                    name="group1"
+                    type="radio"
+                    id="inline-radio-2"
+                    onChange={() => setBookType('donate')}
+                />
+            </div>
+            </Form>
             <div className="row justify-content-center mb-4">
             <input type="file" id="upload" hidden onChange={changeHandler}/>
             {
@@ -179,15 +225,35 @@ const Admin = () => {
         <div className="auth-wrapper">
             <div className="auth-inner">
                 <button className="btn btn-light" onClick={openModal2}>Add book</button>
-                <h1 className="text-center">Available books</h1>
                 {
-                    books.map(b => <Book    
-					    isAdmin={true}
-					    book={b} 
-                                            setAddedBook={setAddedBook} 
-                                            update={update} 
-                                            setUpdate={setUpdate} 
-                                            key={b._id}/>)
+                    page === 'books'?
+                    <>  
+                        <button className="btn btn-dark" onClick={handlePageChange}>DonatedBooks</button>
+                        <h1 className="text-center">Available books</h1>
+                        {
+                            books.map(b => <Book    
+                                                    isAdmin={true}
+                                                    book={b} 
+                                                    update={update} 
+                                                    setUpdate={setUpdate} 
+                                                    key={b._id}/>)
+                        }
+                    </>
+                    :
+                    page === 'donatedBooks'?
+                    <>
+                    <button className="btn btn-dark" onClick={() => setPage('books')}>Exchaned books</button>
+                    <h1 className="text-center">Donated books</h1>
+                    {
+                        donatedBooks.map(b => <Book    
+                                                isAdmin={true}
+                                                book={b} 
+                                                update={update} 
+                                                setUpdate={setUpdate} 
+                                                key={b._id}/>)
+                    }
+                    </>
+                    :null
                 }
             </div>
         </div>

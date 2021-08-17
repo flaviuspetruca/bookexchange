@@ -12,6 +12,7 @@ import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 
 const Dashboard = () => {
 
+    const [nrBooks, setNrBooks] = useState(0);
     const [books, setBooks] = useState([]);
     const [hasBeenSeen, setHasBeenSeen] = useState(false);
     const [index, setIndex] = useState(() => { let nr = Math.floor(window.innerWidth/288 - 1);
@@ -38,6 +39,13 @@ const Dashboard = () => {
             const res = await req.json();
             setBooks(res.books);
         }
+        const getDonatedBooks = async() =>{
+            const req = await fetch(URI + "getdonatedbooks/true");
+            const res = await req.json();
+            console.log(req.status);
+            setNrBooks(res.length);
+        }
+        getDonatedBooks();
         Aos.init({duration: 2000});
         getBooks()
     }, []);
@@ -50,14 +58,14 @@ const Dashboard = () => {
                     <img src={kidsVector} alt="kids" id="kids"></img>
                 </div>
                 <div data-aos="fade-left" data-aos-once="true" className="col-lg-6 description">
-                <h3 className="px-5 mt-5 mr-5" style={{fontWeight: 300}}>BOOKarest Donate&Exchange este un eveniment caritabil cu și despre cărți, care se focusează pe începutul educației pentru copii aflați sub tutela asociațiilor umanitare.
+                <h3 className="px-5 mt-5 mr-5" style={{fontWeight: 300}}>BOOKarest Donate&Exchange este un eveniment caritabil cu și despre cărți, care se focusează pe începutul educației pentru copiii aflați sub tutela asociațiilor umanitare.
                 </h3>
                 </div>
             </div>
             <div data-aos="fade-up" data-aos-once="true" className="row text-center">
             <VisibilitySensor partialVisibility offset={{bottom: 100}} onChange={changeHandler} delayedCall>
                     <div className="countup-inner">
-                        <CountUp end={hasBeenSeen? 10 : 0} duration={1.5} className="countup"/>
+                        <CountUp end={hasBeenSeen? nrBooks : 0} duration={1.5} className="countup"/>
                         <h1 className="mt-0">Cărți donate</h1>
                     </div>
                 </VisibilitySensor>
