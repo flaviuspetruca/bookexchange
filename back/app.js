@@ -24,6 +24,7 @@ const addBook = require('./book/addBook');
 const getBooks = require("./book/getBooks");
 const deleteBook = require("./book/deleteBooks");
 const islogged = require("./auth/islogged");
+const getDonatedBooks = require("./book/getDonatedBooks");
 
 
 /* app.get('/adduser', (req, res) =>{
@@ -82,6 +83,10 @@ app.post('/api/addbook', upload.single('thumbnail'), (req, res) => {
 
 app.get('/api/getbooks', (req, res) => {
     getBooks(req, res);
+})
+
+app.get('/api/getdonatedbooks/:number', (req, res) => {
+    getDonatedBooks(req, res);
 })
 
 app.delete("/api/deletebook/:id", (req,res) => {
