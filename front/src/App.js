@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import Login from './components/Login';
 import NotFound from './components/NotFound';
 import Admin from './components/Admin';
+import AllBooks from './components/AllBooks';
 
 const URI = "https://bookarest.live/api/";
 
@@ -66,6 +67,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/" exact component={DashBoard}/>
+          <Route path="/allbooks" exact component={AllBooks}/>
           <Route path="/login" component={() => <Login setToken={handleLogin}/>}/>
           {
             isAdmin ? <Route path="/admin" component={Admin}/>

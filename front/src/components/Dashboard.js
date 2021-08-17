@@ -9,6 +9,7 @@ import 'aos/dist/aos.css';
 import VisibilitySensor from 'react-visibility-sensor';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { useHistory } from 'react-router';
 
 const Dashboard = () => {
 
@@ -19,6 +20,8 @@ const Dashboard = () => {
         if(nr <= 0) return 1;
         else return nr;
     });
+
+    const history = useHistory();
     const [start, setStart] = useState(0);
 
     const changeHandler = (isVisible) => {
@@ -77,6 +80,11 @@ const Dashboard = () => {
             <div className="row carousel">
                 <div data-aos="fade-down" data-aos-once="true" className="row mt-5 mb-5 justify-content-center">
                     <h1 className="text-center text-white mt-5">Cărți valabile pentru exchange</h1>
+                    <div className="row justify-content-center">
+                        <button className="btn" id="allbookbutton" 
+                                onClick={() => history.push('/allbooks')}>Vezi toate cărțile
+                        </button>
+                    </div>
                     {
                         start > 0 ?
                         <button className="chevron-up" onClick={() => {setStart(start-index)}}>
