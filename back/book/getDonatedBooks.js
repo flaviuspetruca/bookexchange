@@ -4,7 +4,7 @@ const DonatedBook = require('../schemas/bookDonated');
 const getDonatedBooks = (req, res) => {
     const token = req.header('x-auth-token');
     if(req.params.number === "true"){
-        bookDonated.find({}, (err, books) => {
+        DonatedBook.find({}, (err, books) => {
             if(books){
                 res.status(200).json({length: books.length});
             }

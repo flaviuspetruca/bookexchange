@@ -2,6 +2,7 @@ const Book = require("../schemas/book");
 const jwt = require("jsonwebtoken");
 
 const deleteBook = (req, res) => {
+    res.status(200).send(req.params.type);
     const token = JSON.parse(req.header("x-auth-token"));
     try{
         const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);

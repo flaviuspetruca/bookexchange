@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card'
 import Modal from 'react-modal';
 import {URI} from "../App.js";
 
-const Book = ({isAdmin, book, setUpdate, update}) => {
+const Book = ({type, isAdmin, book, setUpdate, update}) => {
     const thumbnail = book.thumbnail;
     const authors = book.authors;
     const title = book.title;
@@ -14,7 +14,7 @@ const Book = ({isAdmin, book, setUpdate, update}) => {
         if(!isAdmin)
             return;
         console.log(book._id);
-        const req = await fetch(URI + `deleteBook/${book._id}`, {
+        const req = await fetch(URI + `deleteBook/${book._id}/${type}`, {
             method: "DELETE",
             headers: {
                 "x-auth-token": token,

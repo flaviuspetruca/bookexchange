@@ -89,6 +89,6 @@ app.get('/api/getdonatedbooks/:number', (req, res) => {
     getDonatedBooks(req, res);
 })
 
-app.delete("/api/deletebook/:id", (req,res) => {
+app.delete("/api/deletebook/:id/:type", (req,res) => {
     deleteBook(req, res);
 })

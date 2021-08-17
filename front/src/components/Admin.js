@@ -120,7 +120,7 @@ const Admin = () => {
             const res = await req.json();
             setDonatedBooks(res.books);
         }
-        if(donatedBooks === [])
+        if(donatedBooks.length === 0)
             getDonatedBooks();
     }
 
@@ -232,6 +232,7 @@ const Admin = () => {
                         <h1 className="text-center">Available books</h1>
                         {
                             books.map(b => <Book    
+                                                    type={"exchange"}
                                                     isAdmin={true}
                                                     book={b} 
                                                     update={update} 
@@ -245,7 +246,8 @@ const Admin = () => {
                     <button className="btn btn-dark" onClick={() => setPage('books')}>Exchaned books</button>
                     <h1 className="text-center">Donated books</h1>
                     {
-                        donatedBooks.map(b => <Book    
+                        donatedBooks.map(b => <Book
+                                                type={"donate"}    
                                                 isAdmin={true}
                                                 book={b} 
                                                 update={update} 
