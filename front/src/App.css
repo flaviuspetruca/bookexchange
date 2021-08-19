@@ -212,6 +212,23 @@
 		margin-top: -2rem;
 		max-width: 800px;
 	}
+
+	#tea{
+		margin: 0 !important;
+		width: 100%;
+	}
+
+	#concordia{
+		margin: 0 !important;
+		width: 50%;
+	}
+
+	.con{
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 20px !important;
+	}
 	
 	.title{
 		margin-top: 30px;
@@ -254,13 +271,19 @@
 
 	.carousel{
 		background-color: #038d6f;
-		margin-top: 100px !important;
 	}
 
 	.description{
 		margin-top: 80px !important;
 		font-weight: 100 !important;
 		text-align: center;
+	}
+
+	.eveniment{
+		margin: 50px 30px 30px 30px;
+		text-align: center;
+		font-weight: 300;
+		font-size: 20px;
 	}
 
 	#leaders{
@@ -363,5 +386,4 @@
 		#kids{
 			margin-top: 0 !important;
 		}
-		
 	  }

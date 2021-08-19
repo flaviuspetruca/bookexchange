@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {URI} from "../App.js";
 import kidsVector from './kidsvector.svg';
 import leaders from './leaders.png';
+import tea from './tea.png';
+import concordia from './concordia.png';
 import CountUp from 'react-countup';
 import Book from "./Book";
 import Aos from 'aos';
@@ -76,6 +78,23 @@ const Dashboard = () => {
             
             <div data-aos="fade-up" data-aos-once="true" className="row justify-content-center">
                 <img src={leaders} alt="leaders" id="leaders"></img>
+            </div>
+            <div data-aos="fade-up" data-aos-once="true" className="event mt-5">
+                <h1 className="allbooks">Despre eveniment</h1>
+                <p className="eveniment">Dacă nu cumva aveți treabă sau dacă nu știți ce să faceți în weekendul <b>4-5 septembrie</b>, între orele <b>11.00 și 18.00</b>, vă invităm la o cafea alături de noi și câțiva oameni dragi din comunitatea <b>T5</b>, la ei “acasă”, foarte aproape de centrul Bucureștiului, pe <b>Strada Olimpului, nr. 13B</b>. Fericirea stă ascunsă în gesturile mici, iar în această perioadă desfășurăm un eveniment caritabil pentru a ajuta câțiva copii care se află sub tutela <b>Asociației Concordia</b>.
+                Cum să vă pregătiți pentru acest weekend? Va trebui să răscoliți puțin prin biblioteca sau chiar printr-un magazin în căutarea unor cărți. Pentru noi, o carte primită va reprezenta o donație, iar două cărți vor putea constitui parte din exchange, putând alege o carte din cele puse la dispoziție</p>
+                <p className="eveniment">
+                Nu există “cartea potrivită” pentru exchange, dar sperăm să creăm o bibliotecă pentru cei mici, focusând-ne foarte mult pe acest tip de cărți, astfel, cărțile pentru copii vor fi imediat extrase din bibliotecă și vor fi puse deoparte pentru a ajunge direct la <b>Asociația Concordia</b>.
+                </p>
+            </div>
+            <div data-aos="fade-up" data-aos-once="true" className="row justify-content-center mx-0">
+                <div className="col-lg-6 px-0 con">
+                    <img src={concordia} alt="concordia" id="concordia"></img>
+                </div>
+                <div className="col-lg-6 mx-0 px-0">
+                    <img src={tea} alt="tea" id="tea"></img>
+                </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.5443751365933!2d26.096611515393278!3d44.4219944791025!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff1196c79c0b%3A0xb2f9ae4f69c21c8a!2sT5%20Social!5e0!3m2!1sen!2sro!4v1629370846639!5m2!1sen!2sro" width="100%" height="400" style={{border:"3px solid black"}} allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div className="row carousel">
                 <div data-aos="fade-down" data-aos-once="true" className="row mt-5 mb-5 justify-content-center">
